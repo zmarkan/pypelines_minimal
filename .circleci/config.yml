@@ -5,10 +5,12 @@ orbs:
 
 jobs: 
     publish-docker:
+        executor: python/default
         steps:
             - run: ECHO "TODO - deploy to docker hub"
             - run: ECHO "TODO - deploy to some server"
     build-docker:
+        executor: python/default
         steps:
             - run: ECHO "TODO - build docker image"
             
@@ -27,8 +29,6 @@ workflows:
   main:
     jobs:
       - build-and-test
-      - build-docker
-      - publish-docker
     
 
     
