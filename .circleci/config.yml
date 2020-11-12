@@ -13,9 +13,9 @@ jobs:
     build-docker:
         docker:
             - image: circleci/python:3.8.2
-                auth:
-                    username: $docker_username
-                    password: $docker_pw
+            auth:
+                username: $docker_username
+                password: $docker_pw
         steps:
             - checkout
             - setup_remote_docker:
