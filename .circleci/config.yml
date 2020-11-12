@@ -4,11 +4,11 @@ orbs:
     python: circleci/python@1.2.1
 
 jobs: 
-    publish:
+    publish-docker:
         steps:
             - run: ECHO "TODO - deploy to docker hub"
             - run: ECHO "TODO - deploy to some server"
-    build:
+    build-docker:
         steps:
             - run: ECHO "TODO - build docker image"
             
