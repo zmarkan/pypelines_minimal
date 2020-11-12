@@ -1,0 +1,35 @@
+version: 2.1
+
+orbs:
+    python: circleci/python@1.2.1
+
+jobs: 
+    publish:
+        steps:
+            - run: ECHO "TODO - deploy to docker hub"
+            - run: ECHO "TODO - deploy to some server"
+    build:
+        steps:
+            - run: ECHO "TODO - build docker image"
+            
+    build-and-test:
+        executor: python/default
+        steps:
+          - checkout
+          - python/install-packages
+          - run: pip install '.[test]'
+          - run: pytest
+        #   - python/dist
+        #   - store_artifacts:
+        #       path: dist
+          
+workflows:
+  main:
+    jobs:
+      - build-and-test
+      - build-docker
+      - publish-docker
+    
+
+    
+
