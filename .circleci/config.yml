@@ -19,8 +19,7 @@ jobs:
         steps:
           - checkout
           - python/install-packages
-          - run: pip install '.[test]'
-          - run: pytest
+          - run: python app.test.py     
         #   - python/dist
         #   - store_artifacts:
         #       path: dist
