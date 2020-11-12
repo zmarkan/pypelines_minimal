@@ -9,10 +9,23 @@ jobs:
         steps:
             - run: ECHO "TODO - deploy to docker hub"
             - run: ECHO "TODO - deploy to some server"
+
     build-docker:
-        executor: python/default
+        docker:
+            - image: circleci/python:3.8.2
+                auth:
+                    username: $docker_username
+                    password: $docker_pw
         steps:
-            - run: ECHO "TODO - build docker image"
+            - checkout
+            - setup_remote_docker:
+                version: 19.03.13
+                docker_layer_caching: true
+            - run: |
+                TAG=0.1.$CIRCLE_BUILD_NUM
+                docker build -t zmarkan/pypelines-minimal-app:$TAG .
+                docker push zmarkan/pypelines-minimal-app:$TAG
+
             
     build-and-test:
         executor: python/default
@@ -22,14 +35,12 @@ jobs:
                 pip-dependency-file: requirements.txt
                 pkg-manager: pip
           - run: python app.test.py     
-        #   - python/dist
-        #   - store_artifacts:
-        #       path: dist
-          
+    
 workflows:
   main:
     jobs:
       - build-and-test
+      - build-docker
     
 
     
